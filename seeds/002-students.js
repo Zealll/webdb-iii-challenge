@@ -2,7 +2,7 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
  
-  return knex('table_name').insert([
+  return knex('students').insert([
     {cohort_id: 1, name: 'Elan'},
     {cohort_id: 2, name: 'Jordan'},
     {cohort_id: 1, name: 'Frank'},

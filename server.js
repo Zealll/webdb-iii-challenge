@@ -10,6 +10,6 @@ server.get('/', (req,res) => {
     )
 })
 
-server.use('/api/cohorts')
+// server.use('/api/cohorts', )
 
 module.exports = server
