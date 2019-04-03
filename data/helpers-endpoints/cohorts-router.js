@@ -48,6 +48,32 @@ router.post('/', (req, res) => {
     }
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const body = req.body
+
+    if (!body.name) {
+        res
+        .status(400)
+        .json({message: "Please fill out the 'name' field"})
+    } else {
+        cohorts
+        .update(id, body)
+        .then(updated => {
+            if (!updated) {
+                res
+                .status(404)
+                .json({message: `Cohort with a specified ID of ${id} does not exist!`})
+            } else {
+                res
+                .status(200)
+                .json({message: `Success! You updated ${updated} item(s)`})
+            }  
+        })
+        .catch(error => res.status(500).json(error))
+    }
+    
+})
 
 
 module.exports = router
