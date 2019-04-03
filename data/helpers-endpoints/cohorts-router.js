@@ -75,5 +75,22 @@ router.put('/:id', (req, res) => {
     
 })
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id
+
+    cohorts
+    .remove(id)
+    .then(deleted => {
+        if (!deleted) {
+            res
+            .status(404)
+            .json({message: `Cohort with the specified ID of ${id} does not exist.`})
+        } else {
+            res.json({message: 'Item Has Been Deleted.'}).end()
+        }
+    })
+    .catch(error => res.status(500).json(error))
+})
+
 
 module.exports = router
