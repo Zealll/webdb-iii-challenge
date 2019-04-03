@@ -29,6 +29,25 @@ router.get('/:id', (req,res) => {
     .catch(error => res.status(500).json(error))
 })
 
+router.post('/', (req, res) => {
+    const body = req.body
+
+    if (!body.name) {
+        res
+        .status(400)
+        .json({message: "Please fill out the 'name' field"})
+    } else {
+        cohorts
+        .insert(body)
+        .then(newCohort => {
+            res
+            .status(201)
+            .json(newCohort)
+        })
+        .catch(error => res.status(500).json(error))
+    }
+})
+
 
 
 module.exports = router
