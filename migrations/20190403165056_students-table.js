@@ -4,6 +4,11 @@ exports.up = function(knex, Promise) {
       tbl.increments()
       tbl.string('name', 100).notNullable().unique()
       tbl.integer('cohort_id').notNullable()
+      .unsigned()
+      .references('id')
+      .inTable('cohorts')
+      .onDelete('CASCADE')
+      .onUpdate('CASCADE')
   })
 };
 
