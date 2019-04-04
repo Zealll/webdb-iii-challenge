@@ -26,7 +26,7 @@ function getStudents(cohortId) {
     return db('students as s')
       .join('cohorts as c', 'c.id', 's.cohort_id')
       .select('s.id', 's.name', 'c.name as cohort')
-      .where('s.cohort_id', cohortId)
+      .where('c.id', cohortId)
   }
 
 function insert(cohort) {

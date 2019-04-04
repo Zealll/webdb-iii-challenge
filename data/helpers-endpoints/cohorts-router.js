@@ -38,7 +38,7 @@ router.get('/:id/students', (req, res) => {
         if(students.length === 0) {
             res
             .status(404)
-            .json({message: `Cohort with a specified ID of ${id} does not exist!`})
+            .json({message: `Cohort with a specified ID of ${id} does not have any students!`})
         } else {
             res.json(students)
         }
