@@ -16,9 +16,11 @@ function get() {
 }
 
 function getById(id) {
-    return db('students')
-    .where({ id })
-    .first()
+    return db('students as s')
+    .join('cohorts as c', 'c.id', 's.cohort_id')
+    .select('s.id', 's.name', 'c.name as cohort')
+    .where('s.id', id )
+    
 }
 
 function insert(student) {

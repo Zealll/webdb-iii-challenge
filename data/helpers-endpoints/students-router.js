@@ -18,7 +18,7 @@ router.get('/:id', (req,res) => {
     students
     .getById(id)
     .then(student => {
-        if(!student) {
+        if(student.length === 0) {
             res
             .status(404)
             .json({message: `student with a specified ID of ${id} does not exist!`})
