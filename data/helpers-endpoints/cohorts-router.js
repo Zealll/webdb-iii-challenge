@@ -29,6 +29,23 @@ router.get('/:id', (req,res) => {
     .catch(error => res.status(500).json(error))
 })
 
+router.get('/:id/students', (req, res) => {
+    const id = req.params.id
+
+    cohorts
+    .getStudents(id)
+    .then(students => {
+        if(students.length === 0) {
+            res
+            .status(404)
+            .json({message: `Cohort with a specified ID of ${id} does not exist!`})
+        } else {
+            res.json(students)
+        }
+    })
+    .catch(error => res.status(500).json(error))
+})
+
 router.post('/', (req, res) => {
     const body = req.body
 

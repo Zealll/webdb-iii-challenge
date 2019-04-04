@@ -6,6 +6,7 @@ const db = knex(knexConfig.development)
 module.exports = {
     get,
     getById,
+    getStudents,
     insert,
     update,
     remove,
@@ -20,6 +21,13 @@ function getById(id) {
     .where({ id })
     .first()
 }
+
+function getStudents(cohortId) {
+    return db('students as s')
+      .join('cohorts as c', 'c.id', 's.cohort_id')
+      .select('s.id', 's.name', 'c.name as cohort')
+      .where('s.cohort_id', cohortId)
+  }
 
 function insert(cohort) {
     return db('cohorts')
